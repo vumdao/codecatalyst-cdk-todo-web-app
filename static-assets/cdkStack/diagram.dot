@@ -1,0 +1,333 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "App" {
+    subgraph "cluster-SubGraph.App" {
+      graph [
+        label = "App",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#f3f3f3",
+      ];
+      subgraph "cluster-SubGraph.TodoApiStack" {
+        graph [
+          label = "TodoApiStack",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#e4e4e4",
+        ];
+        "TodoApiStack/TodosDB" [
+          label = " TodosDB",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Database/64/Arch_Amazon-DynamoDB_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "TodoApiStack/getTodos" [
+          label = " getTodos",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "TodoApiStack/getTodo" [
+          label = " getTodo",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "TodoApiStack/addTodo" [
+          label = " addTodo",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "TodoApiStack/deleteTodo" [
+          label = " deleteTodo",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "TodoApiStack/updateTodo" [
+          label = " updateTodo",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "TodoApiStack/ApiGateway" [
+          label = " ApiGateway",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+      }
+      subgraph "cluster-SubGraph.FrontendStack" {
+        graph [
+          label = "FrontendStack",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#e4e4e4",
+        ];
+        "FrontendStack/cdk-todo-web-app-acm" [
+          label = " cdk-todo-web-app-acm",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Certificate-Manager_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "FrontendStack/FrontendAppBucket" [
+          label = " FrontendAppBucket",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "FrontendStack/FrontendAppOIA" [
+          label = " FrontendAppOIA",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Resource/Res_Security-Identity-and-Compliance/Res_48_Dark/Res_AWS-Identity-Access-Management_Permissions_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "FrontendStack/cdk-todo-web-app-cname-alternative" [
+          label = " cdk todo web app\ncname alternative",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Resource/Res_Networking-and-Content-Delivery/Res_48_Dark/Res_Amazon-Route-53-Hosted-Zone_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.682,
+        ];
+        "FrontendStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" [
+          label = " Custom \nCDKBucketDeployment86",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.4819999999999998,
+        ];
+        "FrontendStack/FrontendAppCloudFront/CFDistribution" [
+          label = " CloudFront\nDistribution\nCFDistribution",
+          fontsize = 12,
+          image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-CloudFront_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.6979999999999995,
+        ];
+        subgraph "cluster-SubGraph.FrontendAppDeploy" {
+          graph [
+            label = "FrontendAppDeploy",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#d6d6d6",
+          ];
+          "FrontendStack/FrontendAppDeploy/AwsCliLayer" [
+            label = " AwsCliLayer",
+            fontsize = 12,
+            image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+          "FrontendStack/FrontendAppDeploy/CustomResource" [
+            label = " CloudFormation\nCustomResource\nCustomResource",
+            fontsize = 12,
+            image = "/opt/homebrew/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.898,
+          ];
+        }
+      }
+    }
+  }
+  "TodoApiStack/getTodos" -> "TodoApiStack/TodosDB" [
+    dir = "both",
+  ];
+  "TodoApiStack/getTodo" -> "TodoApiStack/TodosDB" [
+    dir = "both",
+  ];
+  "TodoApiStack/addTodo" -> "TodoApiStack/TodosDB" [
+    dir = "both",
+  ];
+  "TodoApiStack/deleteTodo" -> "TodoApiStack/TodosDB" [
+    dir = "both",
+  ];
+  "TodoApiStack/updateTodo" -> "TodoApiStack/TodosDB" [
+    dir = "both",
+  ];
+  "TodoApiStack/ApiGateway" -> "TodoApiStack/getTodos" [
+    dir = "both",
+  ];
+  "TodoApiStack/ApiGateway" -> "TodoApiStack/addTodo" [
+    dir = "both",
+  ];
+  "TodoApiStack/ApiGateway" -> "TodoApiStack/updateTodo" [
+    dir = "both",
+  ];
+  "TodoApiStack/ApiGateway" -> "TodoApiStack/getTodo" [
+    dir = "both",
+  ];
+  "TodoApiStack/ApiGateway" -> "TodoApiStack/deleteTodo" [
+    dir = "both",
+  ];
+  "FrontendStack/FrontendAppBucket" -> "FrontendStack/FrontendAppOIA" [
+    dir = "both",
+  ];
+  "FrontendStack/cdk-todo-web-app-cname-alternative" -> "FrontendStack/FrontendAppCloudFront/CFDistribution" [
+    dir = "both",
+  ];
+  "FrontendStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" -> "FrontendStack/FrontendAppBucket" [
+    dir = "both",
+  ];
+  "FrontendStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" -> "FrontendStack/FrontendAppDeploy/AwsCliLayer" [
+    dir = "both",
+  ];
+  "FrontendStack/FrontendAppCloudFront/CFDistribution" -> "TodoApiStack/ApiGateway" [
+    dir = "both",
+  ];
+  "FrontendStack/FrontendAppCloudFront/CFDistribution" -> "FrontendStack/cdk-todo-web-app-acm" [
+    dir = "both",
+  ];
+  "FrontendStack/FrontendAppCloudFront/CFDistribution" -> "FrontendStack/FrontendAppBucket" [
+    dir = "both",
+  ];
+  "FrontendStack/FrontendAppCloudFront/CFDistribution" -> "FrontendStack/FrontendAppOIA" [
+    dir = "both",
+  ];
+}

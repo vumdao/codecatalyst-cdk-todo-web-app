@@ -1,0 +1,88 @@
+Name: main_fullstack_workflow
+SchemaVersion: "1.0"
+Triggers:
+  - Branches:
+      - main
+    Type: PUSH
+Actions:
+  FrontendBuildAndPackage:
+    Identifier: aws/build@v1
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Outputs:
+      Artifacts:
+        - Name: frontend
+          Files:
+            - "**/*"
+    Configuration:
+      Steps:
+        - Run: cd static-assets/frontend
+        - Run: npm install
+        - Run: echo "REACT_APP_SERVICE_URL=/api/todos" > ".env"
+        - Run: npm run build
+  FrontendTest:
+    Identifier: aws/managed-test@v1
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Outputs:
+      AutoDiscoverReports:
+        IncludePaths:
+          - frontend/**/*.xml
+        ExcludePaths:
+          - frontend/node_modules/**/*
+        ReportNamePrefix: AutoDiscovered
+        Enabled: true
+        SuccessCriteria:
+          PassRate: 100
+    Configuration:
+      Steps:
+        - Run: cd static-assets/frontend
+        - Run: npm install
+        - Run: npm test -- --coverage --watchAll=false;
+  CDKBootstrapAction:
+    Identifier: aws/cdk-bootstrap@v1
+    Configuration:
+      Region: us-east-1
+      CdkCliVersion: latest
+    Environment:
+      Name: default_environment
+      Connections:
+        - Name: "123456789012"
+          Role: CodeCatalystWorkflowDevelopmentRole-simflexcloud
+    DependsOn:
+      - FrontendTest
+      - FrontendBuildAndPackage
+  CDKDeploy:
+    Identifier: aws/build@v1
+    Inputs:
+      Artifacts:
+        - frontend
+    Outputs:
+      AutoDiscoverReports:
+        IncludePaths:
+          - "**/*"
+        ExcludePaths:
+          - "*/.codecatalyst/workflows/*"
+        ReportNamePrefix: AutoDiscovered
+        Enabled: true
+    Configuration:
+      Steps:
+        - Run: cp -r static-assets/frontend/build static-assets/cdkStack/src/lib/frontend/
+        - Run: cd static-assets/cdkStack
+        - Run: npm install -g pnpm
+        - Run: pnpm i --no-frozen-lockfile
+        - Run: export CDK_DEPLOY_ACCOUNT=123456789012
+        - Run: export CDK_DEPLOY_REGION=us-east-1
+        - Run: pnpm dlx projen deploy --all --require-approval never
+    Environment:
+      Name: default_environment
+      Connections:
+        - Name: "123456789012"
+          Role: CodeCatalystWorkflowDevelopmentRole-simflexcloud
+    DependsOn:
+      - CDKBootstrapAction
+Compute:
+  Type: EC2
+  Fleet: Linux.x86-64.Large
