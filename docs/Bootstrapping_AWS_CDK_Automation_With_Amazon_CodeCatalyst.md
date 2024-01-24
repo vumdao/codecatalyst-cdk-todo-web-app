@@ -259,12 +259,6 @@
 Congratulations! You've successfully bootstrapped and initialized AWS CDK with CodeCatalyst, and you can now deploy infrastructure changes or update frontend/backend using a pull request workflow.
 
 ---
-
-# Reference
-- https://aws.amazon.com/blogs/compute/building-serverless-multi-region-websocket-apis/
-
-
----
 <h3 align="center">
   <a href="https://dev.to/vumdao">:stars: Blog</a>
   <span> · </span>
